@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:controls="clr-namespace:SwipeViewSamples.Controls"
+             x:Name="root"
+             x:Class="SwipeViewSamples.Pages.MoviesPage"
+             BackgroundColor="{StaticResource backgroundColor}">
+    <ContentPage.Padding>
+        <Thickness Top="40" Left="5" Right="5"/>
+    </ContentPage.Padding>
+
+    <Grid VerticalOptions="FillAndExpand">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="100"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Text="{Binding Title}" FontAttributes="Bold" FontSize="Large"/>
+
+        <ContentView Grid.Row="1" Style="{StaticResource horizontalDividerStyle}"/>
+
+        <Label Grid.Row="2" Text="My Favourite Films"/>
+
+        <CollectionView Grid.Row="3" ItemsSource="{Binding FavouriteMovies}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
+          <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <SwipeView>
+                    <SwipeView.TopItems>
+                        <SwipeItem Text="{Binding FavouriteLabel}"
+                                   BackgroundColor="{StaticResource backgroundColor}"
+                                   Command="{Binding Source={x:Reference root}, Path=BindingContext.ToggleFavouriteCommand}"
+                                   CommandParameter="{Binding .}"/>
+                    </SwipeView.TopItems>
+
+                    <controls:MovieCard/>
+                </SwipeView>
+            </DataTemplate>
+          </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <ContentView Grid.Row="4" Style="{StaticResource horizontalDividerStyle}"/>
+
+        <CollectionView Grid.Row="5" ItemsSource="{Binding OrderedMovies}" VerticalOptions="FillAndExpand">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="2"
+                                 SnapPointsType="Mandatory"
+                                 SnapPointsAlignment="Start"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+
+                        <SwipeView.LeftItems>
+                            <SwipeItems Mode="Execute">
+                                <SwipeItem Text="{Binding FavouriteLabel}"
+                                           BackgroundColor="{StaticResource backgroundColor}"
+                                           Command="{Binding Source={x:Reference root}, Path=BindingContext.ToggleFavouriteCommand}"
+                                           CommandParameter="{Binding .}"/>
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Execute">
+                                <SwipeItem Text="{Binding PinLabel}"
+                                           BackgroundColor="{StaticResource backgroundColor}"
+                                           Command="{Binding Source={x:Reference root}, Path=BindingContext.TogglePinnedCommand}"
+                                           CommandParameter="{Binding .}"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <controls:MovieCard/>
+
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

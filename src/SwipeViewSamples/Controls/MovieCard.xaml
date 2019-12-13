@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+      xmlns:transforms="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+      x:Class="SwipeViewSamples.Controls.MovieCard" xmlns:icons="clr-namespace:SwipeViewSamples.Icons">
+  <Grid.Resources>
+    <ResourceDictionary>
+      <Style x:Key="fontAwesomeIcon" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource fontawesome5pro_solid}"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Padding" Value="15"/>
+      </Style>
+    </ResourceDictionary>
+  </Grid.Resources>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <ff:CachedImage Aspect="AspectFit" Grid.Row="0" Grid.RowSpan="2" Source="{Binding ImageUrl}">
+        <ff:CachedImage.Transformations>
+            <transforms:RoundedTransformation Radius="25" BorderSize="2" BorderHexColor="#cccccc"/>
+        </ff:CachedImage.Transformations>
+    </ff:CachedImage>
+
+    <Label Grid.Row="1"
+           Text="{Binding Name}"
+           FontAttributes="Bold"
+           HorizontalTextAlignment="Center"
+           TextColor="WhiteSmoke"
+           BackgroundColor="Black"/>
+
+    <Label Style="{StaticResource fontAwesomeIcon}"
+           Grid.Row="0"
+           HorizontalOptions="Start"
+           VerticalOptions="Start"
+           Text="{x:Static icons:FontAwesomeIcons.Star}"
+           IsVisible="{Binding IsFavourite}"
+           TextColor="Gold"/>
+
+    <Label Style="{StaticResource fontAwesomeIcon}" 
+           Grid.Row="0"
+           HorizontalOptions="End"
+           VerticalOptions="Start"
+           Text="{x:Static icons:FontAwesomeIcons.Thumbtack}"
+           IsVisible="{Binding IsPinned}"
+           TextColor="Silver"/>
+
+</Grid>
