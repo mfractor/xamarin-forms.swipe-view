@@ -5,7 +5,7 @@
 ## Introduction
 Take a moment and think about your favourite email app; it's likely you can swipe on emails to archive or delete them. These swipe actions are intuitive and feel natural... so natural, in fact, you probably do it without even thinking about it!
 
-With Xamarin.Forms 4.4, Xamarin.Forms developers can now use the `SwipeView` layout to attach intuitive swipe-actions to any control. With relatively little work, we can give our users rich context actions that can be executed simply by swiping left or right.
+With Xamarin.Forms 4.4, Xamarin.Forms developers can now use the `SwipeView` layout to attach intuitive swipe-actions to any control. With relatively little work, we can give our users rich context actions they can execute simply by swiping left or right.
 
 Pretty powerful stuff!
 
