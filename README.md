@@ -3,11 +3,13 @@
 **Use SwipeView to create intuitive context actions in your app**
 
 ## Introduction
-Take a moment and think about your favourite email app; it's likely you can swipe on emails to archive or delete them. These swipe actions feel natural and are intuitive... so natural, in fact, you probably do it without even thinking about it!
+Take a moment and think about your favourite email app; it's likely you can swipe on emails to archive or delete them. These swipe actions are intuitive and feel natural... so natural, in fact, you probably do it without even thinking about it!
 
-With Xamarin.Forms 4.4, Xamarin.Forms developers can now use the `SwipeView` layout to attach intuitive swipe-actions to any control. With relatively little work, we can now add rich context actions that our users can execute simply by swiping left or right.
+With Xamarin.Forms 4.4, Xamarin.Forms developers can now use the `SwipeView` layout to attach intuitive swipe-actions to any control. With relatively little work, we can give our users rich context actions that can be executed simply by swiping left or right.
 
-In this article, we'll explore the ins and outs of the new `SwipeView` control with a series of real-world examples. We'll make an app to display the top movies of 2019 and then use `SwipeView` to create swipe actions so our users sort films and star their favourite films.
+Pretty powerful stuff!
+
+In this article, we'll explore the ins and outs of `SwipeView` through a series of real-world examples. We'll make an app to display the top movies of 2019 and use `SwipeView` to create swipe actions so our users can sort the films list and also star their favourite films.
 
 We'll learn:
 
