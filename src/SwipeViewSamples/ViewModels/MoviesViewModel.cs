@@ -2,11 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Input;
+using Xamarin.Forms;
+using PropertyChanged;
 
 namespace SwipeViewSamples.ViewModels
 {
     public class MoviesViewModel : INotifyPropertyChanged
     {
+        [AlsoNotifyFor(nameof(OrderedMovies), nameof(SortModeDescription))]
+        public SortMode SortMode
+        {
+            get;
+            set;
+        } = SortMode.None;
+
+        public string SortModeDescription => "Sorted By: " + SortMode;
+
         public string Title
         {
             get;
@@ -34,11 +46,28 @@ namespace SwipeViewSamples.ViewModels
 
         public List<Movie> FavouriteMovies => Movies.Where(m => m.IsFavourite).ToList();
 
-        public List<Movie> OrderedMovies => Movies.OrderByDescending(m => m.IsPinned).ToList();
+        public List<Movie> OrderedMovies
+        {
+            get
+            {
+                var ordered = Movies.OrderByDescending(m => m.IsPinned);
+
+                if (SortMode == SortMode.Ascending)
+                {
+                    ordered = ordered.ThenBy(m => m.Name);
+                }
+                else if (SortMode == SortMode.Descending)
+                {
+                    ordered = ordered.ThenByDescending(m => m.Name);
+                }
+
+                return ordered.ToList();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public System.Windows.Input.ICommand ToggleFavouriteCommand
+        public ICommand ToggleFavouriteCommand
         {
             get
             {

@@ -4,7 +4,13 @@ using PropertyChanged;
 namespace SwipeViewSamples
 {
     public class Movie : INotifyPropertyChanged
-    {
+    {        public string Notes
+        {
+            get;
+            set;
+        }
+
+
         public Movie(string name, string imageUrl)
         {
             Name = name;

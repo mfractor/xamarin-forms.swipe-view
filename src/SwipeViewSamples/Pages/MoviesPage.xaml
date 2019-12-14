@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:SwipeViewSamples.Controls"
              x:Name="root"
              x:Class="SwipeViewSamples.Pages.MoviesPage"
-             BackgroundColor="{StaticResource backgroundColor}">
+             BackgroundColor="{StaticResource backgroundColor}" xmlns:icons="clr-namespace:SwipeViewSamples.Icons">
     <ContentPage.Padding>
         <Thickness Top="40" Left="5" Right="5"/>
     </ContentPage.Padding>
@@ -14,12 +14,14 @@
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
-        <RowDefinition Height="100"/>
+        <RowDefinition Height="120"/>
+        <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Text="{Binding Title}" FontAttributes="Bold" FontSize="Large"/>
+        
+        <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Large" VerticalOptions="Center" Grid.Row="0"/>
 
         <ContentView Grid.Row="1" Style="{StaticResource horizontalDividerStyle}"/>
 
@@ -31,23 +33,32 @@
             </CollectionView.ItemsLayout>
           <CollectionView.ItemTemplate>
             <DataTemplate>
-                <SwipeView>
-                    <SwipeView.TopItems>
-                        <SwipeItem Text="{Binding FavouriteLabel}"
-                                   BackgroundColor="{StaticResource backgroundColor}"
-                                   Command="{Binding Source={x:Reference root}, Path=BindingContext.ToggleFavouriteCommand}"
-                                   CommandParameter="{Binding .}"/>
-                    </SwipeView.TopItems>
-
-                    <controls:MovieCard/>
-                </SwipeView>
+                <controls:MovieCard/>
             </DataTemplate>
           </CollectionView.ItemTemplate>
         </CollectionView>
+
         
         <ContentView Grid.Row="4" Style="{StaticResource horizontalDividerStyle}"/>
+        
+<SwipeView Grid.Row="5">
+    <SwipeView.LeftItems>
+        <SwipeItems Mode="Reveal">
+            <SwipeItem BackgroundColor="{StaticResource backgroundColor}"
+                        Text="↓"
+                        Invoked="SortDescending"/>
+            <SwipeItem BackgroundColor="{StaticResource backgroundColor}"
+                        Text="↑"
+                        Invoked="SortAscending"/>
+            <SwipeItem BackgroundColor="{StaticResource backgroundColor}"
+                        Text="╳"
+                        Invoked="SortNone"/>
+        </SwipeItems>
+    </SwipeView.LeftItems>
+    <Label Text="{Binding SortModeDescription}" FontSize="Large" FontAttributes="Bold"/>
+</SwipeView>
 
-        <CollectionView Grid.Row="5" ItemsSource="{Binding OrderedMovies}" VerticalOptions="FillAndExpand">
+        <CollectionView Grid.Row="6" ItemsSource="{Binding OrderedMovies}" VerticalOptions="FillAndExpand">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
                                  Span="2"
@@ -57,27 +68,16 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>
-
                         <SwipeView.LeftItems>
                             <SwipeItems Mode="Execute">
                                 <SwipeItem Text="{Binding FavouriteLabel}"
-                                           BackgroundColor="{StaticResource backgroundColor}"
-                                           Command="{Binding Source={x:Reference root}, Path=BindingContext.ToggleFavouriteCommand}"
-                                           CommandParameter="{Binding .}"/>
+                                            BackgroundColor="{StaticResource backgroundColor}"
+                                            Command="{Binding Source={x:Reference root}, Path=BindingContext.ToggleFavouriteCommand}"
+                                            CommandParameter="{Binding .}"/>
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
-                        <SwipeView.RightItems>
-                            <SwipeItems Mode="Execute">
-                                <SwipeItem Text="{Binding PinLabel}"
-                                           BackgroundColor="{StaticResource backgroundColor}"
-                                           Command="{Binding Source={x:Reference root}, Path=BindingContext.TogglePinnedCommand}"
-                                           CommandParameter="{Binding .}"/>
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-
                         <controls:MovieCard/>
-
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
