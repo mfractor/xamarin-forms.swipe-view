@@ -1,6 +1,6 @@
 # Introducing the Xamarin.Forms SwipeView Control
 
-**Using SwipeView to create intuitive context actions in your app**
+**Use SwipeView to create intuitive context actions in your app**
 
 ## Introduction
 Take a moment and think about your favourite email app; it's likely you can swipe on emails to archive or delete them. These swipe actions feel natural and are intuitive... so natural, in fact, you probably do it without even thinking about it!
@@ -57,7 +57,7 @@ Our movies app will be composed of the following sections:
  * A title that shows the current sorting of the films; users can swipe on this to reveal a context menu to sort the films.
  * A grid `CollectionView` to show the top films of 2019; users can swipe on each film card to mark it as a favourite.
 
-[For reference, the full source code for this app can be found here.](https://)
+[For reference, the full source code for this app can be found here.](https://github.com/mfractor/xamarin-forms.swipe-view/tree/master/src)
 
 ### Executing Commands On Swipe (Favourite Action)
 Let's start by giving our film connoisseurs an easy way to record their favourite films; we'll define a `MovieCard` with a swipe action to toggle the `IsFavourite` state of each film.
@@ -80,9 +80,9 @@ We can create this like so:
 </SwipeView>
 ```
 
-Here we declare a new `SwipeView` to wrap our `MovieCard` and expose a left to right swipe action. When our users swipe left to right, the swipe view reveals the favourite action and automatically triggers the `Command` when the swipe is released.
+Here we declare a new `SwipeView` to wrap our `MovieCard` and expose a left to right swipe action. 
 
-By setting `Mode="Execute"` on `SwipeItems`, we tell the swipe view to automatically trigger the command on a swipe item when the user releases the swipe gesture.
+When our users swipe left to right, the swipe view reveals the favourite action and automatically triggers the `Command` when the swipe is released. This is achieved by setting `Mode="Execute"` on `SwipeItems`.
 
 This lets our users swipe left-to-right on a movie to intuitively star or unstar their favourite films:
 
@@ -120,7 +120,7 @@ We can define a multi-item context menu by creating a `SwipeView` with multiple 
 
 This declares a new `SwipeView` to give the `SortModeDescription` label three context menu items. When a user swipe left to right, the swipe view reveals three context actions (`↓`, `↑` and `╳`) that trigger different sorting filters on the movie collection.
 
-As we have set `Mode="Reveal"`, the swipe view reveals all `SwipeItem`s and then requires the user to tap on an item to execute it.
+Also, as we have set `Mode="Reveal"`, the swipe view will reveal all `SwipeItem`s and then require the user to tap on an item to execute it.
 
 Lastly, we initialise the `Invoked` event with a method from our code-behind class. When the user taps on the item, the `SwipeView` will execute this method.
 
@@ -131,6 +131,8 @@ SwipeView is a powerful addition to Xamarin.Forms that enables developer to atta
 We've learnt how to create add actions that our users can execute on swipe and how to attach context menus to any UI control using SwipeItems.
 
 This article only scratches the surface of `SwipeView`, to learn more visit the official [SwipeView documentation](https://docs.microsoft.com/en-gb/xamarin/xamarin-forms/user-interface/swipeview).
+
+--------
 
 Matthew is the founder of www.mfractor.com, a powerful productivity tool for Xamarin developers.
 
